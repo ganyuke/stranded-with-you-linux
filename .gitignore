@@ -2,6 +2,9 @@
 !.gitignore
 !README.md
 !Game.sh
+!install.sh
+!patch-game.sh
+!steam-game-path.sh
 !build-linux-release.sh
 !.github/
 !.github/workflows/

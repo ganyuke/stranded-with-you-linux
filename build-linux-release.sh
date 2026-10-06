@@ -33,7 +33,8 @@ packaged_steamworks="$bundle_dir/linux-runtime/resources/app/node_modules/steamw
 mkdir -p "$packaged_steamworks/dist/linux64" "$output_dir"
 
 cp -a "$electron_dist/." "$bundle_dir/linux-runtime/"
-cp "$project_dir/Game.sh" "$project_dir/README.md" "$bundle_dir/"
+cp "$project_dir/Game.sh" "$project_dir/install.sh" "$project_dir/patch-game.sh" \
+    "$project_dir/steam-game-path.sh" "$project_dir/README.md" "$bundle_dir/"
 cp "$project_dir/linux/main.js" "$project_dir/linux/preload.js" \
     "$bundle_dir/linux-runtime/resources/app/"
 cp "$runtime_manifest" "$bundle_dir/linux-runtime/resources/app/package.json"
@@ -41,7 +42,7 @@ cp "$steamworks_module/index.js" "$steamworks_module/package.json" \
     "$steamworks_module/LICENSE" "$packaged_steamworks/"
 cp -a "$steamworks_module/dist/linux64/." "$packaged_steamworks/dist/linux64/"
 
-chmod +x "$bundle_dir/Game.sh" "$bundle_dir/linux-runtime/electron"
+chmod +x "$bundle_dir/Game.sh" "$bundle_dir/install.sh" "$bundle_dir/linux-runtime/electron"
 tar -C "$build_dir" -czf "$archive" stranded-with-you-linux
 
 echo "Built $archive"
