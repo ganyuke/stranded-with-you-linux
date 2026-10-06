@@ -1,8 +1,12 @@
 # Stranded with You on Linux
 
-There was a certain visual novel on Steam titled [Stranded with You](https://store.steampowered.com/app/4260270/Stranded_with_You/) that just so happened to cross my Steam Discovery Queue and the tags combined with the childhood friend premise and the cute, sharktoothed female main character design piqued my interest. And no, I have not played the patch despite my 10 hour playtime.
+| Before | After |
+| :---: | :---: |
+| <img width="100%" alt="before screenshot where erroneous bar is present." src="https://github.com/user-attachments/assets/b93e8ceb-1ab4-4e6a-b2a7-7357838df849" /> | <img width="100%" alt="after screenshot where erroneous bar is missing." src="https://github.com/user-attachments/assets/0c070842-b25e-4102-83ae-114f9412052c" /> |
 
-There was a major problem though: it is a Windows-based RPG Maker game with just an `.exe` and if you run it with Proton, RPG Maker for some reason pushes down the entire window, leaving a black bar at the top visually. However, inputs are still in their original position, so every button is slightly out of place vertically. Which is annoying! Nothing scales right!
+There was a certain visual novel on Steam titled [Stranded with You](https://store.steampowered.com/app/4260270/Stranded_with_You/) that just so happened to cross my Steam Discovery Queue and the tags combined with the childhood friend premise and the cute, shark-toothed female main character design piqued my interest. And no, I have not played the patch despite my 10 hour playtime.
+
+There was a major problem though: it is a Windows-based RPG Maker game with just an `.exe` and for some reason, RPG Maker on my NVIDIA Bazzite install pushes down the entire window, leaving a blank bar at the top visually. However, inputs are still in their [original positions](#this-is-annoying-to-play-around), so every button is slightly out of place vertically. Which is annoying! Nothing scales right!
 
 But I took a look at the files and realized something incredible: RPG Maker games are just glorified JavaScript. You know what also runs JavaScript and, in particular is notorious for being a RAM eater? That's right! [Electron](https://www.electronjs.org/)! And if RPG Maker games were, in effect, just glorified browsers and they needed a JavaScript engine, does that mean I can replace NW.js with Electron?
 
@@ -45,3 +49,7 @@ The launcher automatically creates the text file `stranded-with-you-linux/launch
 ## Uninstall
 
 Delete the `stranded-with-you-linux` folder from Stranded with You's Steam game folder.
+
+## This is annoying to play around
+
+https://github.com/user-attachments/assets/feff763f-32e8-43a0-8d98-94e68adb1bbc
