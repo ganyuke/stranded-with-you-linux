@@ -1,0 +1,60 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+  id-token: write
+  attestations: write
+  artifact-metadata: write
+
+jobs:
+  release:
+    name: Build and release Linux archive
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v7.0.1
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: linux/package-lock.json
+
+      - name: Check release version
+        id: release
+        shell: bash
+        run: |
+          version="$(node -p "require('./linux/package.runtime.json').version")"
+          if [[ "$GITHUB_REF_NAME" != "v$version" ]]; then
+            echo "Tag $GITHUB_REF_NAME does not match package version v$version" >&2
+            exit 1
+          fi
+
+          artifact="dist/stranded-with-you-linux-v${version}-x64.tar.gz"
+          echo "artifact=$artifact" >> "$GITHUB_OUTPUT"
+
+      - name: Build Linux archive
+        run: npm --prefix linux run build
+
+      - name: Attest build provenance
+        uses: actions/attest@v4.2.2
+        with:
+          subject-path: ${{ steps.release.outputs.artifact }}
+          subject-version: ${{ github.ref_name }}
+
+      - name: Publish GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ARTIFACT: ${{ steps.release.outputs.artifact }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" "$ARTIFACT" \
+            --generate-notes \
+            --title "$GITHUB_REF_NAME" \
+            --verify-tag

@@ -1,0 +1,12 @@
+*
+!.gitignore
+!README.md
+!Game.sh
+!build-linux-release.sh
+!.github/
+!.github/workflows/
+!.github/workflows/release.yml
+!linux/
+!linux/*.json
+!linux/*.js
+!LICENSE

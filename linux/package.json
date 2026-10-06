@@ -1,0 +1,19 @@
+{
+    "name": "stranded-with-you-linux",
+    "productName": "Stranded with You",
+    "version": "0.1.0",
+    "private": true,
+    "description": "Native Linux launcher for Stranded with You, running the game in Electron instead of the bundled Windows NW.js",
+    "main": "main.js",
+    "scripts": {
+        "setup": "npm install && node node_modules/electron/install.js",
+        "start": "electron .",
+        "build": "npm ci && node node_modules/electron/install.js && ../build-linux-release.sh"
+    },
+    "devDependencies": {
+        "electron": "^44.5.1"
+    },
+    "dependencies": {
+        "steamworks.js": "^0.4.0"
+    }
+}
